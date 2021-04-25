@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Flex,
@@ -14,7 +14,7 @@ import {
 
 function Header() {
   return (
-    <Box bg="white" w="100%" px={8} py={2} color="black">
+    <Box bg="transparent" w="100%" px={9} py={2} color="black" zIndex="overlay" position="fixed">
       <Flex alignItems="center">
         <HStack spacing="24px">
           <Box px="8" py="2" bg="orange" color="white">
@@ -112,4 +112,4 @@ function Header() {
   );
 }
 
-export default Header
+export default Header;
