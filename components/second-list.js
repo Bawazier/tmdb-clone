@@ -1,40 +1,65 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
-import React from "react";
-import { Box, HStack, VStack, Image, Center } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, HStack, VStack, Center } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import Image from "next/image";
 
-function SecondList() {
+
+function SecondList({title, data}) {
+  const [next, setNext] = useState(0);
   return (
-    <Box>
+    <Box bg="transparent" zIndex={2} display="flex" justifyContent="left">
       <HStack align="end" spacing="0px">
-        <Center color="orange" px="2" height="52" bg="white">
+        <Center
+          as="button"
+          color="orange"
+          px="2"
+          height="36"
+          bg="transparent"
+          onClick={() => setNext(next - 5)}
+          opacity={next < 1 ? "0%" : "100%"}
+          disabled={next < 1 ? true : false}
+        >
           <ChevronLeftIcon fontSize="28px" />
         </Center>
         <Box>
           <VStack align="left" spacing="14px">
             <Box as="h2" color="orange" fontWeight="bold" fontSize="xl">
-              Most Popular Kids Movies
+              {title}
             </Box>
             <HStack
-              spacing="8px"
+              spacing="12px"
               shouldWrapChildren
               overflow="-moz-hidden-unscrollable"
             >
-              {[...Array(20)].map(() => (
-                <Box>
-                  <Image
-                    src="https://image.tmdb.org/t/p/original/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg"
-                    alt="Segun Adebayo"
-                    w="52"
-                    h="48"
-                    objectFit="cover"
-                  />
-                </Box>
-              ))}
+              {data.map((item, index) => {
+                if (index >= next) {
+                  return (
+                    <Box as="button">
+                      <Image
+                        src={item.backdrop_path}
+                        alt=""
+                        width={240}
+                        height="auto"
+                      />
+                    </Box>
+                  );
+                }
+              })}
             </HStack>
           </VStack>
         </Box>
-        <Center color="black" px="2" height="52" bg="white">
+        <Center
+          as="button"
+          color="black"
+          px="2"
+          height="36"
+          bg="transparent"
+          onClick={() => setNext(next + 5)}
+          opacity={next > 10 ? "0%" : "100%"}
+          disabled={next > 10 ? true : false}
+        >
           <ChevronRightIcon fontSize="28px" color="orange" />
         </Center>
       </HStack>

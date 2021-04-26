@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { HStack, VStack, Box, Image, Text, Button } from "@chakra-ui/react";
 import {
@@ -5,7 +6,7 @@ import {
   InfoOutlineIcon,
 } from "@chakra-ui/icons";
 
-function MainItem() {
+function MainItem({title, overview, backdrop}) {
   return (
     <HStack spacing="0px" position="relative">
       <Box
@@ -24,18 +25,18 @@ function MainItem() {
             fontWeight="extrabold"
             color="white"
           >
-            Godzilla vs. Kong
+            {title}
           </Text>
           <HStack spacing="14px">
             <Button
-              leftIcon={<ExternalLinkIcon color="white"/>}
+              leftIcon={<ExternalLinkIcon color="white" />}
               bg="orange"
               color="white"
             >
               Play
             </Button>
             <Button
-              leftIcon={<InfoOutlineIcon color="white"/>}
+              leftIcon={<InfoOutlineIcon color="white" />}
               bg="lightblack"
               color="white"
             >
@@ -43,19 +44,11 @@ function MainItem() {
             </Button>
           </HStack>
           <Text fontSize="lg" color="white">
-            In a time when monsters walk the Earth, humanity’s fight for its
-            future sets Godzilla and Kong on a collision course that will see
-            the two most powerful forces of nature on the planet collide in a
-            spectacular battle for the ages.
+            {overview}
           </Text>
         </VStack>
       </Box>
-      <Image
-        src="https://image.tmdb.org/t/p/original/inJjDhCjfhh3RtrJWBmmDqeuSYC.jpg"
-        alt=""
-        w="max"
-        h="100vh"
-      />
+      <Image src={backdrop} alt="" w="max" h="100vh" />
     </HStack>
   );
 }

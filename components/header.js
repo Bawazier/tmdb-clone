@@ -11,10 +11,19 @@ import {
   Button,
   ButtonGroup,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 function Header() {
   return (
-    <Box bg="transparent" w="100%" px={9} py={2} color="black" zIndex="overlay" position="fixed">
+    <Box
+      bg="transparent"
+      w="100%"
+      px={9}
+      py={2}
+      color="black"
+      zIndex="overlay"
+      position="fixed"
+    >
       <Flex alignItems="center">
         <HStack spacing="24px">
           <Box px="8" py="2" bg="orange" color="white">
@@ -35,8 +44,12 @@ function Header() {
               Movies
             </MenuButton>
             <MenuList bg="white">
-              <MenuItem>Popular</MenuItem>
-              <MenuItem>Top Rated</MenuItem>
+              <Link href="/en/movies/popular">
+                <MenuItem>Popular</MenuItem>
+              </Link>
+              <Link href="/en/movies/top-rated">
+                <MenuItem>Top Rated</MenuItem>
+              </Link>
             </MenuList>
           </Menu>
           <Menu isLazy>
