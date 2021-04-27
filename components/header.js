@@ -44,10 +44,16 @@ function Header() {
               Movies
             </MenuButton>
             <MenuList bg="white">
-              <Link href="/en/movies/popular">
+              <Link href="/en-US/movies/popular">
                 <MenuItem>Popular</MenuItem>
               </Link>
-              <Link href="/en/movies/top-rated">
+              <Link href="/en-US/movies/now-playing">
+                <MenuItem>Now Playing</MenuItem>
+              </Link>
+              <Link href="/en-US/movies/upcoming">
+                <MenuItem>Upcoming</MenuItem>
+              </Link>
+              <Link href="/en-US/movies/top-rated">
                 <MenuItem>Top Rated</MenuItem>
               </Link>
             </MenuList>
@@ -67,8 +73,18 @@ function Header() {
               Tv Shows
             </MenuButton>
             <MenuList bg="white">
-              <MenuItem>Popular</MenuItem>
-              <MenuItem>Top Rated</MenuItem>
+              <Link href="/en-US/tv/popular">
+                <MenuItem>Popular</MenuItem>
+              </Link>
+              <Link href="/en-US/tv/airing-today">
+                <MenuItem>Airing Today</MenuItem>
+              </Link>
+              <Link href="/en-US/tv/on-tv">
+                <MenuItem>On TV</MenuItem>
+              </Link>
+              <Link href="/en-US/tv/top-rated">
+                <MenuItem>Top Rated</MenuItem>
+              </Link>
             </MenuList>
           </Menu>
           <Menu isLazy>
@@ -86,8 +102,9 @@ function Header() {
               People
             </MenuButton>
             <MenuList bg="white">
-              <MenuItem>Popular</MenuItem>
-              <MenuItem>Top Rated</MenuItem>
+              <Link href="/en-US/person/popular">
+                <MenuItem>Popular</MenuItem>
+              </Link>
             </MenuList>
           </Menu>
           <Menu isLazy>
@@ -105,8 +122,7 @@ function Header() {
               More
             </MenuButton>
             <MenuList bg="white">
-              <MenuItem>Popular</MenuItem>
-              <MenuItem>Top Rated</MenuItem>
+              <MenuItem>About</MenuItem>
             </MenuList>
           </Menu>
         </HStack>
