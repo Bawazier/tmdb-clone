@@ -9,10 +9,11 @@ import {
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import Header from "../../../components/header";
+import Footer from "../../../components/footer";
 import MainList from "../../../components/main-list";
 import SecondList from "../../../components/second-list";
 import MainItem from "../../../components/main-item";
-import { VStack } from "@chakra-ui/react";
+import { VStack, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 export async function getStaticProps({params}) {
@@ -74,7 +75,7 @@ export default function Browse() {
     option
   );
   return (
-    <>
+    <Box bg="white">
       <Header />
       <VStack spacing="-100px">
         {browse === "popular" && Popular.isSuccess && (
@@ -154,119 +155,120 @@ export default function Browse() {
             NowPlaying.isSuccess &&
             Upcoming.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Top Rated Movies"
-                data={TopRated.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Now Playing Movies"
-                data={NowPlaying.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Upcoming Movies"
-                data={Upcoming.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Top Rated Movies"
+                  data={TopRated.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Now Playing Movies"
+                  data={NowPlaying.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Upcoming Movies"
+                  data={Upcoming.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
           {browse === "top-rated" &&
             TopRated.isSuccess &&
             NowPlaying.isSuccess &&
             Upcoming.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Popular Movies"
-                data={Popular.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Now Playing Movies"
-                data={NowPlaying.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Upcoming Movies"
-                data={Upcoming.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Popular Movies"
+                  data={Popular.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Now Playing Movies"
+                  data={NowPlaying.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Upcoming Movies"
+                  data={Upcoming.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
           {browse === "upcoming" &&
             TopRated.isSuccess &&
             NowPlaying.isSuccess &&
             Upcoming.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Top Rated Movies"
-                data={TopRated.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Now Playing Movies"
-                data={NowPlaying.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Popular Movies"
-                data={Popular.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Top Rated Movies"
+                  data={TopRated.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Now Playing Movies"
+                  data={NowPlaying.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Popular Movies"
+                  data={Popular.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
           {browse === "now-playing" &&
             TopRated.isSuccess &&
             NowPlaying.isSuccess &&
             Upcoming.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Top Rated Movies"
-                data={TopRated.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Popular Movies"
-                data={Popular.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Upcoming Movies"
-                data={Upcoming.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Top Rated Movies"
+                  data={TopRated.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Popular Movies"
+                  data={Popular.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Upcoming Movies"
+                  data={Upcoming.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
         </VStack>
       </VStack>
-    </>
+      <Footer />
+    </Box>
   );
 }

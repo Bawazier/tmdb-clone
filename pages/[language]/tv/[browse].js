@@ -9,10 +9,11 @@ import {
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import Header from "../../../components/header";
+import Footer from "../../../components/footer";
 import MainList from "../../../components/main-list";
 import SecondList from "../../../components/second-list";
 import MainItem from "../../../components/main-item";
-import { VStack } from "@chakra-ui/react";
+import { VStack, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 export async function getStaticProps({ params }) {
@@ -69,7 +70,7 @@ export default function Browse() {
     option
   );
   return (
-    <>
+    <Box bg="white">
       <Header />
       <VStack spacing="-100px">
         {browse === "popular" && Popular.isSuccess && (
@@ -149,119 +150,120 @@ export default function Browse() {
             OnAir.isSuccess &&
             AiringToday.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Top Rated TV"
-                data={TopRated.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Now on TV"
-                data={OnAir.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Airing Today"
-                data={AiringToday.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Top Rated TV"
+                  data={TopRated.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Now on TV"
+                  data={OnAir.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Airing Today"
+                  data={AiringToday.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
           {browse === "top-rated" &&
             TopRated.isSuccess &&
             OnAir.isSuccess &&
             AiringToday.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Popular TV"
-                data={Popular.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Now on TV"
-                data={OnAir.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Airing Today"
-                data={AiringToday.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Popular TV"
+                  data={Popular.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Now on TV"
+                  data={OnAir.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Airing Today"
+                  data={AiringToday.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
           {browse === "on-tv" &&
             TopRated.isSuccess &&
             OnAir.isSuccess &&
             AiringToday.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Top Rated TV"
-                data={TopRated.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Popular TV"
-                data={Popular.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Airing Today"
-                data={AiringToday.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Top Rated TV"
+                  data={TopRated.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Popular TV"
+                  data={Popular.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Airing Today"
+                  data={AiringToday.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
           {browse === "airing-today" &&
             TopRated.isSuccess &&
             OnAir.isSuccess &&
             AiringToday.isSuccess &&
             Popular.isSuccess && (
-            <VStack bg="white" spacing="14px">
-              <SecondList
-                title="Top Rated TV"
-                data={TopRated.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Now on TV"
-                data={OnAir.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-              <SecondList
-                title="Popular TV"
-                data={Popular.data}
-                onOpen={(id) =>
-                  router.push(`/${language}/movies/title/${id}`)
-                }
-              />
-            </VStack>
-          )}
+              <VStack bg="white" spacing="14px">
+                <SecondList
+                  title="Top Rated TV"
+                  data={TopRated.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Now on TV"
+                  data={OnAir.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+                <SecondList
+                  title="Popular TV"
+                  data={Popular.data}
+                  onOpen={(id) =>
+                    router.push(`/${language}/movies/title/${id}`)
+                  }
+                />
+              </VStack>
+            )}
         </VStack>
       </VStack>
-    </>
+      <Footer />
+    </Box>
   );
 }

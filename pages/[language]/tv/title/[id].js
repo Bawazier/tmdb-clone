@@ -5,18 +5,19 @@ import {
   recommended,
   providers,
   credits,
-  episodes,
+  // episodes,
 } from "../../../../libs/api/tv-shows";
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
 import { useRouter } from "next/router";
 import Header from "../../../../components/header";
+import Footer from "../../../../components/footer";
 import DetailItem from "../../../../components/detail-item";
 import VideosItem from "../../../../components/videos-item";
 import MoreDetail from "../../../../components/more-detail";
 import RecommendedList from "../../../../components/recommended-list";
 import ModalVideo from "../../../../components/modal-video";
-import { VStack, useDisclosure } from "@chakra-ui/react";
+import { VStack, useDisclosure, Box } from "@chakra-ui/react";
 
 export async function getServerSideProps({ params }) {
   const queryClient = new QueryClient();
@@ -101,9 +102,8 @@ export default function Title() {
   );
 
   return (
-    <>
+    <Box bg="white">
       <Header />
-
       <VStack align="left" bg="white" spacing="40px">
         {Details.isSuccess && Credits.isSuccess && (
           <DetailItem
@@ -148,6 +148,7 @@ export default function Title() {
           name={nameVideo}
         />
       )}
-    </>
+      <Footer />
+    </Box>
   );
 }
