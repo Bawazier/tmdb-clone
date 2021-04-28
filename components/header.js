@@ -12,8 +12,10 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Header() {
+  const router = useRouter();
   return (
     <Box
       bg="transparent"
@@ -26,8 +28,8 @@ function Header() {
     >
       <Flex alignItems="center">
         <HStack spacing="24px">
-          <Box px="8" py="2" bg="orange" color="white">
-            Logo
+          <Box px="8" py="2" bg="orange" fontSize="md" fontWeight="extrabold" color="white" borderRadius="md">
+            LOGO
           </Box>
           <Menu isLazy>
             <MenuButton
@@ -129,10 +131,19 @@ function Header() {
 
         <Spacer />
         <ButtonGroup variant="solid" spacing="6" size="sm">
-          <Button bg="orange" color="white">
+          <Button
+            bg="orange"
+            color="white"
+            onClick={() => router.push("/en-US/join")}
+          >
             JOIN NOW
           </Button>
-          <Button border="1px" borderColor="black" color="black">
+          <Button
+            border="1px"
+            borderColor="black"
+            color="black"
+            onClick={() => router.push("/en-US/join")}
+          >
             SIGN IN
           </Button>
         </ButtonGroup>
