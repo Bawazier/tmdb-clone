@@ -6,7 +6,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 
 
-function SecondList({title, data}) {
+function SecondList({ title, data, onOpen }) {
   const [next, setNext] = useState(0);
   return (
     <Box bg="transparent" zIndex={2} display="flex" justifyContent="left">
@@ -25,7 +25,7 @@ function SecondList({title, data}) {
         </Center>
         <Box>
           <VStack align="left" spacing="14px">
-            <Box as="h2" color="orange" fontWeight="bold" fontSize="xl">
+            <Box as="h2" color="black" fontWeight="bold" fontSize="xl">
               {title}
             </Box>
             <HStack
@@ -36,9 +36,9 @@ function SecondList({title, data}) {
               {data.map((item, index) => {
                 if (index >= next) {
                   return (
-                    <Box as="button">
+                    <Box as="button" onClick={() => onOpen(item.id)}>
                       <Image
-                        src={item.backdrop_path}
+                        src={item.backdrop_path || item.poster_path}
                         alt=""
                         width={240}
                         height="auto"
