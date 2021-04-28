@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+/* eslint-disable react/prop-types */
 import React from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Hydrate } from "react-query/hydration";
@@ -9,11 +9,16 @@ import { extendTheme } from "@chakra-ui/react";
 const colors = {
   white: "#F4F4F4",
   orange: "#FF7314",
-  ligthblack: "#393534",
+  lightblack: "#393534",
   black: "#22211F",
 };
 
-const theme = extendTheme({ colors });
+const config = {
+  initialColorMode: "light",
+  useSystemColorMode: false,
+};
+
+const theme = extendTheme({ colors, config });
 
 function MyApp({ Component, pageProps }) {
   const queryClientRef = React.useRef();
