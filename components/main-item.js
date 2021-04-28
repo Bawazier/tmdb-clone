@@ -6,7 +6,7 @@ import {
   InfoOutlineIcon,
 } from "@chakra-ui/icons";
 
-function MainItem({title, overview, backdrop}) {
+function MainItem({ title, overview, backdrop, onOpen }) {
   return (
     <HStack spacing="0px" position="relative">
       <Box
@@ -16,7 +16,7 @@ function MainItem({title, overview, backdrop}) {
         w="xl"
         h="full"
         position="absolute"
-        pl="10"
+        pl={9}
       >
         <VStack align="left">
           <Text
@@ -39,6 +39,7 @@ function MainItem({title, overview, backdrop}) {
               leftIcon={<InfoOutlineIcon color="white" />}
               bg="lightblack"
               color="white"
+              onClick={onOpen}
             >
               More Info
             </Button>
