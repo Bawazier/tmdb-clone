@@ -11,9 +11,9 @@ import {
   Text,
   Circle,
 } from "@chakra-ui/react";
-import { ChevronLeftIcon, ChevronRightIcon, ViewIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 
-function VideosItem({onOpen}) {
+function VideosItem({title, data, onOpen}) {
   const [next, setNext] = useState(0);
   return (
     <Box bg="transparent" zIndex={2} display="flex" justifyContent="left">
@@ -24,24 +24,24 @@ function VideosItem({onOpen}) {
           px="2"
           height="80"
           bg="trasnparent"
-          onClick={() => setNext(next - 5)}
+          onClick={() => setNext(next - 3)}
           opacity={next < 1 ? "0%" : "100%"}
           disabled={next < 1 ? true : false}
         >
-          <ChevronLeftIcon fontSize="28px" />
+          <ChevronLeftIcon fontSize="24px" />
         </Center>
-        <Box>
+        <Box maxW="container.xl">
           <VStack align="left" spacing="20px">
             <HStack
               spacing="18px"
-              divider={<StackDivider borderColor="orange" />}
+              divider={<StackDivider borderColor="black" />}
               align="left"
             >
-              <Text fontSize="3xl" fontWeight="bold" color="orange">
+              <Text fontSize="3xl" fontWeight="bold" color="black">
                 Videos
               </Text>
-              <Text fontSize="3xl" color="lightblack">
-                Mortal Kombat
+              <Text fontSize="3xl" color="orange">
+                {title}
               </Text>
             </HStack>
             <HStack
@@ -49,28 +49,36 @@ function VideosItem({onOpen}) {
               shouldWrapChildren
               overflow="-moz-hidden-unscrollable"
             >
-              {[...Array(10)].map(() => (
-                <Box display="flex" alignItems="end" position="relative">
-                  <Circle
-                    as="button"
-                    size="52px"
-                    bg="orange"
-                    color="white"
-                    position="absolute"
-                    ml="4"
-                    mb="4"
-                    onClick={onOpen}
-                  >
-                    <ViewIcon fontSize="24px" />
-                  </Circle>
-                  <Image
-                    src="https://i.ytimg.com/vi/jBa_aHwCbC4/hqdefault.jpg"
-                    alt=""
-                    width="md"
-                    height="80"
-                  />
-                </Box>
-              ))}
+              {data.map(
+                (item, index) =>
+                  index >= next && (
+                    <VStack align="left">
+                      <Box display="flex" alignItems="end" position="relative">
+                        <Circle
+                          as="button"
+                          size="52px"
+                          bg="orange"
+                          color="white"
+                          position="absolute"
+                          ml="4"
+                          mb="4"
+                          onClick={() => onOpen(item.key, item.name)}
+                        >
+                          <ExternalLinkIcon fontSize="24px" />
+                        </Circle>
+                        <Image
+                          src={`https://i.ytimg.com/vi/${item.key}/hqdefault.jpg`}
+                          alt=""
+                          width="md"
+                          height="60"
+                        />
+                      </Box>
+                      <Text fontSize="md" fontWeight="bold" color="orange">
+                        {item.name} ({item.type})
+                      </Text>
+                    </VStack>
+                  )
+              )}
             </HStack>
           </VStack>
         </Box>
@@ -80,11 +88,11 @@ function VideosItem({onOpen}) {
           px="2"
           height="80"
           bg="trasnparent"
-          onClick={() => setNext(next + 5)}
-          opacity={next > 10 ? "0%" : "100%"}
-          disabled={next > 10 ? true : false}
+          onClick={() => setNext(next + 3)}
+          opacity={next > 3 ? "0%" : "100%"}
+          disabled={next > 3 ? true : false}
         >
-          <ChevronRightIcon fontSize="28px" color="orange" />
+          <ChevronRightIcon fontSize="18px" color="orange" />
         </Center>
       </HStack>
     </Box>

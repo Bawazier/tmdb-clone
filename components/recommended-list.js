@@ -1,38 +1,26 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-key */
 import React from "react";
-import { SimpleGrid, VStack, Text } from "@chakra-ui/react";
+import { SimpleGrid, VStack, Text, Box } from "@chakra-ui/react";
 import Image from "next/image";
 
-function RecommendedList() {
+function RecommendedList({data, onOpen}) {
   return (
     <VStack align="left" px="9">
-      <Text fontSize="3xl" fontWeight="bold" color="orange">
-        More Similiar Movies
+      <Text fontSize="3xl" fontWeight="bold" color="black">
+        Recommendations
       </Text>
       <SimpleGrid columns={3} spacing={2}>
-        <Image
-          src="/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
-          alt=""
-          width="150px"
-          height="200px"
-        />
-        <Image
-          src="/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
-          alt=""
-          width="150px"
-          height="200px"
-        />
-        <Image
-          src="/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
-          alt=""
-          width="150px"
-          height="200px"
-        />
-        <Image
-          src="/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"
-          alt=""
-          width="150px"
-          height="200px"
-        />
+        {data.map((item, index) => index < 12 && item.backdrop_path && (
+          <Box as="button" key={item.id} onClick={() => onOpen(item.id)}>
+            <Image
+              src={item.backdrop_path}
+              alt=""
+              width="1080px"
+              height="auto"
+            />
+          </Box>
+        ))}
       </SimpleGrid>
     </VStack>
   );

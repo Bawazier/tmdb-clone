@@ -10,18 +10,28 @@ import {
   StackDivider,
 } from "@chakra-ui/react";
 
-function DetailItem() {
+function DetailItem({
+  title,
+  adult,
+  backdrop_path,
+  genres,
+  status,
+  overview,
+  release_date,
+  cast,
+  crew,
+}) {
   const URL_IMAGE = process.env.NEXT_PUBLIC_API_URL_IMAGE;
   return (
-    <HStack spacing="0px" position="relative" bg="black">
+    <HStack spacing="0px" position="relative" bg="white">
       <Box
         display="flex"
         alignItems="center"
-        bgGradient="linear(to-r, #000000,transparent)"
+        bgGradient="transparent"
         w="full"
         h="full"
         position="absolute"
-        pl="10"
+        pl="9"
       >
         <VStack spacing="18px" align="left" w="xl">
           <Text
@@ -30,68 +40,64 @@ function DetailItem() {
             fontWeight="extrabold"
             color="white"
           >
-            Mortal Kombat
+            {title}
           </Text>
           <HStack
             spacing="10px"
-            divider={<StackDivider borderColor="lightblack" />}
+            divider={<StackDivider borderColor="lightblack" fontWeight="bold" />}
             align="stretch"
           >
-            <Text fontSize="sm" color="lightblack">
-              2021
+            <Text fontSize="sm" color="lightblack" fontWeight="bold">
+              {release_date}
             </Text>
-            <Badge variant="outline" fontSize="sm" colorScheme="lightblack">
-              18+
+            <Badge variant="outline" fontSize="sm" colorScheme="lightblack" fontWeight="bold">
+              {adult ? "RBO" : "R"}
             </Badge>
-            <Text fontSize="sm" color="lightblack">
-              Released
+            <Text fontSize="sm" color="lightblack" fontWeight="bold">
+              {status}
             </Text>
-            <Text fontSize="sm" color="lightblack">
-              Get over here.
+            <Text fontSize="sm" color="lightblack" fontWeight="bold">
+              {genres.map((item, index) => index < 3 && item.name + "\t")}
             </Text>
           </HStack>
           <Text fontSize="md" color="white">
-            Washed-up MMA fighter Cole Young, unaware of his heritage, and
-            hunted by Emperor Shang Tsung&apos;s best warrior, Sub-Zero, seeks
-            out and trains with Earth&apos;s greatest champions as he prepares
-            to stand against the enemies of Outworld in a high stakes battle for
-            the universe.
+            {overview}
           </Text>
-          <HStack>
-            <Text fontSize="sm" color="lightblack">
-              Cast:
-            </Text>
-            <Text fontSize="sm" color="white">
-              Charlie Cox,
-            </Text>
-            <Text fontSize="sm" color="white">
-              Deborah Ann Woll,
-            </Text>
-            <Text fontSize="sm" color="white">
-              Elden Henson
-            </Text>
-          </HStack>
-          <HStack>
-            <Text fontSize="sm" color="lightblack">
-              Crew:
-            </Text>
-            <Text fontSize="sm" color="white">
-              Charlie Cox,
-            </Text>
-            <Text fontSize="sm" color="white">
-              Deborah Ann Woll,
-            </Text>
-            <Text fontSize="sm" color="white">
-              Elden Henson
-            </Text>
-          </HStack>
+          <VStack align="left" spacing="1.5">
+            <HStack>
+              <Text fontSize="sm" color="lightblack" fontWeight="bold">
+                Crew:
+              </Text>
+              {crew.map(
+                (item, index) =>
+                  index < 3 && (
+                    <Text fontSize="sm" color="white" key={item.id}>
+                      {item.name},
+                    </Text>
+                  )
+              )}
+            </HStack>
+            <HStack>
+              <Text fontSize="sm" color="lightblack" fontWeight="bold">
+                Cast:
+              </Text>
+              {cast.map(
+                (item, index) =>
+                  index < 3 && (
+                    <Text fontSize="sm" color="white" key={item.id}>
+                      {item.name},
+                    </Text>
+                  )
+              )}
+            </HStack>
+          </VStack>
         </VStack>
       </Box>
       <Box w="full" display="flex" justifyContent="end">
         <Image
-          src={URL_IMAGE + "/original" + "/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg"}
+          src={URL_IMAGE + "/original" + backdrop_path}
           alt=""
-          w="85%"
+          w="full"
           h="100vh"
         />
       </Box>
