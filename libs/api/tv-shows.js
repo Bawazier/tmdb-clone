@@ -12,14 +12,14 @@ export const top_rated = async (language = "en-US", page = 1) => {
 };
 export const on_air = async (language = "en-US", page = 1) => {
   const { data } = await http.get(
-    "/tv/upcoming?" + `api_key=${API_KEY}&language=${language}&page=${page}`
+    "/tv/on_the_air?" + `api_key=${API_KEY}&language=${language}&page=${page}`
   );
 
   return data.results;
 };
 export const airing_today = async (language = "en-US", page = 1) => {
   const { data } = await http.get(
-    "/tv/now_playing?" + `api_key=${API_KEY}&language=${language}&page=${page}`
+    "/tv/airing_today?" + `api_key=${API_KEY}&language=${language}&page=${page}`
   );
 
   return data.results;

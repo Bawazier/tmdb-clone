@@ -10,18 +10,25 @@ import {
   AspectRatio,
 } from "@chakra-ui/react";
 
-function ModalVideo({isOpen, onClose}) {
+function ModalVideo({ isOpen, onClose, key, name }) {
+  console.log(key);
+  console.log(name);
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="xl">
+    <Modal
+      blockScrollOnMount={false}
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+    >
       <ModalOverlay />
-      <ModalContent bg="orange">
-        <ModalHeader>Mortal Kombat: Trailer 1</ModalHeader>
+      <ModalContent bg="transparent">
+        <ModalHeader>{name}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <AspectRatio w="full" h="350" ratio={1}>
+          <AspectRatio w="full" h="450" ratio={1}>
             <iframe
               title="naruto"
-              src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+              src={`https://www.youtube.com/embed/${key}`}
               allowFullScreen
             />
           </AspectRatio>
