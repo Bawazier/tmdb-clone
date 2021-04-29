@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import {
   Box,
@@ -13,7 +14,7 @@ import {
   NumberInputField,
 } from "@chakra-ui/react";
 
-function SecondStep() {
+function SecondStep({ formik }) {
   return (
     <Box py="4">
       <Text fontSize="20" fontWeight="bold" my="4">
@@ -22,21 +23,42 @@ function SecondStep() {
       <VStack align="left" spacing="4">
         <FormControl id="selected" isRequired>
           <FormLabel>Have a Laptop / PC</FormLabel>
-          <RadioGroup>
+          <RadioGroup id="haveLaptop" name="haveLaptop">
             <HStack spacing="8">
-              <Radio value="yes">Yes</Radio>
-              <Radio value="no">No</Radio>
+              <Radio
+                name="haveLaptop"
+                onChange={formik.handleChange}
+                value="Yes"
+              >
+                Yes
+              </Radio>
+              <Radio
+                name="haveLaptop"
+                onChange={formik.handleChange}
+                value="No"
+              >
+                No
+              </Radio>
             </HStack>
           </RadioGroup>
         </FormControl>
         <FormControl id="address" isRequired>
           <FormLabel>Address</FormLabel>
-          <Textarea />
+          <Textarea
+            id="address"
+            name="address"
+            onChange={formik.handleChange}
+            value={formik.values.address}
+          />
         </FormControl>
         <FormControl id="mobile-number" isRequired>
           <FormLabel>Mobile number</FormLabel>
-          <NumberInput>
-            <NumberInputField />
+          <NumberInput value={formik.values.mobile}>
+            <NumberInputField
+              id="mobile"
+              name="mobile"
+              onChange={formik.handleChange}
+            />
           </NumberInput>
         </FormControl>
       </VStack>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import {
   Box,
@@ -6,7 +7,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-function FinalStep() {
+function FinalStep({data}) {
+  console.log(data);
   return (
     <Box py="4">
       <Text fontSize="20" fontWeight="bold" my="4">
@@ -15,31 +17,33 @@ function FinalStep() {
       <VStack align="left" spacing="4">
         <HStack>
           <Text fontWeight="bold">Fullname:</Text>
-          <Text>Fullname</Text>
+          <Text>
+            {data.firstName} {data.lastName}
+          </Text>
         </HStack>
         <HStack>
           <Text fontWeight="bold">Jobdesc:</Text>
-          <Text>Fullname</Text>
+          <Text>{data.jobdesc.map((item) => item + ", ")}</Text>
         </HStack>
         <HStack>
           <Text fontWeight="bold">Gender:</Text>
-          <Text>Fullname</Text>
+          <Text>{data.gender}</Text>
         </HStack>
         <HStack>
           <Text fontWeight="bold">E-mail:</Text>
-          <Text>Fullname</Text>
+          <Text>{data.email}</Text>
         </HStack>
         <HStack>
           <Text fontWeight="bold">Have a Laptop/PC:</Text>
-          <Text>Fullname</Text>
+          <Text>{data.haveLaptop}</Text>
         </HStack>
         <HStack>
           <Text fontWeight="bold">Mobile number:</Text>
-          <Text>Fullname</Text>
+          <Text>{data.mobile}</Text>
         </HStack>
         <HStack>
           <Text fontWeight="bold">Address:</Text>
-          <Text>Fullname</Text>
+          <Text>{data.address}</Text>
         </HStack>
       </VStack>
     </Box>
