@@ -33,7 +33,7 @@ function MainList({title, data, onOpen}) {
               overflow="-moz-hidden-unscrollable"
             >
               {data.map((item, index) => {
-                if (index >= next) {
+                if (index >= next && item.poster_path) {
                   return (
                     <Box as="button" onClick={() => onOpen(item.id)}>
                       <Image

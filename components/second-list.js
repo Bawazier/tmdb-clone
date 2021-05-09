@@ -34,11 +34,11 @@ function SecondList({ title, data, onOpen }) {
               overflow="-moz-hidden-unscrollable"
             >
               {data.map((item, index) => {
-                if (index >= next) {
+                if (index >= next && item.backdrop_path) {
                   return (
                     <Box as="button" onClick={() => onOpen(item.id)}>
                       <Image
-                        src={item.backdrop_path || item.poster_path}
+                        src={item.backdrop_path}
                         alt=""
                         width={240}
                         height="auto"
