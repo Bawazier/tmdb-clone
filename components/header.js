@@ -15,20 +15,44 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 function Header() {
+  const [scroller, setScroller] = React.useState("transparent");
   const router = useRouter();
+
+  const handleScroll = () => {
+    if(window.pageYOffset > 0) {
+      setScroller("white");
+    }else{
+      setScroller("transparent");
+    }
+  };
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Box
-      bg="transparent"
+      bg={scroller}
       w="100%"
       px={9}
       py={2}
       color="black"
       zIndex="overlay"
       position="fixed"
+      boxShadow="lg"
+      transition="ease-in"
+      transitionDuration="0.5s"
     >
       <Flex alignItems="center">
         <HStack spacing="24px">
-          <Box px="8" py="2" bg="orange" fontSize="md" fontWeight="extrabold" color="white" borderRadius="md">
+          <Box
+            px="8"
+            py="2"
+            bg="orange"
+            fontSize="md"
+            fontWeight="extrabold"
+            color="white"
+            borderRadius="md"
+          >
             LOGO
           </Box>
           <Menu isLazy>
