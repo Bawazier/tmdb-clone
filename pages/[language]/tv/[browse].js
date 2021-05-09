@@ -155,21 +155,21 @@ export default function Browse() {
                   title="Top Rated TV"
                   data={TopRated.data}
                   onOpen={(id) =>
-                    router.push(`/${language}/movies/title/${id}`)
+                    router.push(`/${language}/tv/title/${id}`)
                   }
                 />
                 <SecondList
                   title="Now on TV"
                   data={OnAir.data}
                   onOpen={(id) =>
-                    router.push(`/${language}/movies/title/${id}`)
+                    router.push(`/${language}/tv/title/${id}`)
                   }
                 />
                 <SecondList
                   title="Airing Today"
                   data={AiringToday.data}
                   onOpen={(id) =>
-                    router.push(`/${language}/movies/title/${id}`)
+                    router.push(`/${language}/tv/title/${id}`)
                   }
                 />
               </VStack>
@@ -184,14 +184,14 @@ export default function Browse() {
                   title="Popular TV"
                   data={Popular.data}
                   onOpen={(id) =>
-                    router.push(`/${language}/movies/title/${id}`)
+                    router.push(`/${language}/tv/title/${id}`)
                   }
                 />
                 <SecondList
                   title="Now on TV"
                   data={OnAir.data}
                   onOpen={(id) =>
-                    router.push(`/${language}/movies/title/${id}`)
+                    router.push(`/${language}/tv/title/${id}`)
                   }
                 />
                 <SecondList

@@ -5,7 +5,7 @@ import {
   recommended,
   providers,
   credits,
-  // episodes,
+  episodes,
 } from "../../../../libs/api/tv-shows";
 import { QueryClient, useQuery } from "react-query";
 import { dehydrate } from "react-query/hydration";
@@ -17,6 +17,7 @@ import VideosItem from "../../../../components/videos-item";
 import MoreDetail from "../../../../components/more-detail";
 import RecommendedList from "../../../../components/recommended-list";
 import ModalVideo from "../../../../components/modal-video";
+import EpisodesItem from "../../../../components/episodes-item";
 import { VStack, useDisclosure, Box } from "@chakra-ui/react";
 
 export async function getServerSideProps({ params }) {
@@ -55,6 +56,7 @@ export default function Title() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [keyVideo, setKeyVideo] = React.useState("");
   const [nameVideo, setNameVideo] = React.useState("");
+  const [seasonsId, setSeasonsId] = React.useState(1);
   const router = useRouter();
   const { language, id } = router.query;
 
@@ -100,6 +102,11 @@ export default function Title() {
     () => credits(id),
     option
   );
+  const Seasons = useQuery(
+    ["episodes-tv", id, seasonsId, language],
+    () => episodes(id, seasonsId),
+    option
+  );
 
   return (
     <Box bg="white">
@@ -124,6 +131,9 @@ export default function Title() {
             data={Videos.data}
             title={Details.data.name}
           />
+        )}
+        {Details.isSuccess && (
+          <EpisodesItem title={Details.data.name} seasons={Details.data.seasons} onSelectSeasons={(seasons_id) => setSeasonsId(seasons_id)} data={Seasons} />
         )}
         {Details.isSuccess && Credits.isSuccess && Providers.isSuccess && (
           <MoreDetail
