@@ -10,9 +10,7 @@ import {
   AspectRatio,
 } from "@chakra-ui/react";
 
-function ModalVideo({ isOpen, onClose, key, name }) {
-  console.log(key);
-  console.log(name);
+function ModalVideo({ isOpen, onClose, keyVideo, name }) {
   return (
     <Modal
       blockScrollOnMount={false}
@@ -28,7 +26,7 @@ function ModalVideo({ isOpen, onClose, key, name }) {
           <AspectRatio w="full" h="450" ratio={1}>
             <iframe
               title="naruto"
-              src={`https://www.youtube.com/embed/${key}`}
+              src={`https://www.youtube.com/embed/${keyVideo}`}
               allowFullScreen
             />
           </AspectRatio>

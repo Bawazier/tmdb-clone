@@ -148,7 +148,7 @@ export default function Title() {
         <ModalVideo
           isOpen={isOpen}
           onClose={onClose}
-          key={keyVideo || ""}
+          keyVideo={keyVideo}
           name={nameVideo}
         />
       )}
