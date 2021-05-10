@@ -23,7 +23,7 @@ function DetailItem({
 }) {
   const URL_IMAGE = process.env.NEXT_PUBLIC_API_URL_IMAGE;
   return (
-    <HStack spacing="0px" position="relative" bg="white">
+    <HStack spacing="0px" position="relative" bg="white" minHeight="100vh">
       <Box
         display="flex"
         alignItems="center"
@@ -44,13 +44,20 @@ function DetailItem({
           </Text>
           <HStack
             spacing="10px"
-            divider={<StackDivider borderColor="lightblack" fontWeight="bold" />}
+            divider={
+              <StackDivider borderColor="lightblack" fontWeight="bold" />
+            }
             align="stretch"
           >
             <Text fontSize="sm" color="lightblack" fontWeight="bold">
               {release_date}
             </Text>
-            <Badge variant="outline" fontSize="sm" colorScheme="lightblack" fontWeight="bold">
+            <Badge
+              variant="outline"
+              fontSize="sm"
+              colorScheme="lightblack"
+              fontWeight="bold"
+            >
               {adult ? "RBO" : "R"}
             </Badge>
             <Text fontSize="sm" color="lightblack" fontWeight="bold">

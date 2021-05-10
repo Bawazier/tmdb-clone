@@ -16,8 +16,8 @@ import { ChevronLeftIcon, ChevronRightIcon, ExternalLinkIcon } from "@chakra-ui/
 function VideosItem({title, data, onOpen}) {
   const [next, setNext] = useState(0);
   return (
-    <Box bg="transparent" zIndex={2} display="flex" justifyContent="left">
-      <HStack align="end" spacing="0px">
+    <Box bg="transparent" zIndex={2} display="flex" justifyContent="left" minHeight="100vh">
+      <HStack align="center" spacing="0px">
         <Center
           as="button"
           color="orange"
@@ -52,7 +52,7 @@ function VideosItem({title, data, onOpen}) {
               {data.map(
                 (item, index) =>
                   index >= next && (
-                    <VStack align="left">
+                    <VStack align="left" width="md">
                       <Box display="flex" alignItems="end" position="relative">
                         <Circle
                           as="button"
@@ -73,7 +73,7 @@ function VideosItem({title, data, onOpen}) {
                           height="60"
                         />
                       </Box>
-                      <Text fontSize="md" fontWeight="bold" color="orange">
+                      <Text fontSize="md" fontWeight="bold" color="orange" isTruncated>
                         {item.name} ({item.type})
                       </Text>
                     </VStack>

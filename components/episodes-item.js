@@ -24,7 +24,15 @@ function EpisodesItem({title, seasons, onSelectSeasons, data}) {
   },[]);
 
   return (
-    <Box px={9} bg="white" color="black" zIndex={2} display="flex" justifyContent="left">
+    <Box
+      px={9}
+      bg="white"
+      color="black"
+      zIndex={2}
+      display="flex"
+      justifyContent="left"
+      minHeight="100vh"
+    >
       <VStack align="left" spacing="24px">
         <HStack
           spacing="18px"
@@ -47,8 +55,10 @@ function EpisodesItem({title, seasons, onSelectSeasons, data}) {
             {seasons[seasons.length - 1].name}
           </MenuButton>
           <MenuList color="white">
-            {seasons.map(item => (
-              <MenuItem onClick={() => onSelectSeasons(item.season_number)}>{item.name}</MenuItem>
+            {seasons.map((item) => (
+              <MenuItem onClick={() => onSelectSeasons(item.season_number)}>
+                {item.name}
+              </MenuItem>
             ))}
           </MenuList>
         </Menu>
@@ -61,29 +71,30 @@ function EpisodesItem({title, seasons, onSelectSeasons, data}) {
           </Text>
         </VStack>
         <SimpleGrid columns={3} spacing={2}>
-          {data.isSuccess && data.data && data.data.map((item) => (
-            <Box>
-              {item.still_path ? (
-                <Image
-                  src={item.still_path}
-                  alt=""
-                  width="1080px"
-                  height="550px"
-                />
-              ): (
-                <Box width="full"
-                  height="220px" />
-              )}
-              <VStack align="left" spacing="10px">
-                <Text fontSize="md" fontWeight="bold" color="orange">
-                  {item.episode_number}. {item.name}
-                </Text>
-                <Text fontSize="md" color="lightblack" noOfLines={3}>
-                  {item.overview}
-                </Text>
-              </VStack>
-            </Box>
-          ))}
+          {data.isSuccess &&
+            data.data &&
+            data.data.map((item) => (
+              <Box>
+                {item.still_path ? (
+                  <Image
+                    src={item.still_path}
+                    alt=""
+                    width="1080px"
+                    height="550px"
+                  />
+                ) : (
+                  <Box width="full" height="220px" />
+                )}
+                <VStack align="left" spacing="10px">
+                  <Text fontSize="md" fontWeight="bold" color="orange">
+                    {item.episode_number}. {item.name}
+                  </Text>
+                  <Text fontSize="md" color="lightblack" noOfLines={3}>
+                    {item.overview}
+                  </Text>
+                </VStack>
+              </Box>
+            ))}
         </SimpleGrid>
       </VStack>
     </Box>
