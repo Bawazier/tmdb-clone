@@ -128,7 +128,7 @@ function Header() {
               People
             </MenuButton>
             <MenuList bg="white">
-              <Link href="/en-US/person/popular">
+              <Link href="/en-US/person">
                 <MenuItem>Popular</MenuItem>
               </Link>
             </MenuList>
