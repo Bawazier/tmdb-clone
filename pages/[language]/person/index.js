@@ -7,6 +7,15 @@ export async function getStaticProps() {
   };
 }
 
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { language: "en-US" } },
+    ],
+    fallback: false,
+  };
+}
+
 
 function index() {
   return (
