@@ -12,8 +12,5 @@ export async function getServerSideProps() {
 }
 
 export default function Home() {
-  return (
-    <Container>
-    </Container>
-  );
+  return <Container></Container>;
 }
