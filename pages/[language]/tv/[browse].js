@@ -6,8 +6,7 @@ import {
   on_air,
   airing_today,
 } from "../../../libs/api/tv-shows";
-import { QueryClient, useQuery } from "react-query";
-import { dehydrate } from "react-query/hydration";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 import MainList from "../../../components/main-list";
@@ -16,28 +15,25 @@ import MainItem from "../../../components/main-item";
 import { VStack, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(["popular-tv", params.language], popular);
+  await queryClient.prefetchQuery(["popular-tv", params?.language], popular);
   await queryClient.prefetchQuery(
-    ["top_rated-tv", params.language],
+    ["top_rated-tv", params?.language],
     top_rated
   );
+  await queryClient.prefetchQuery(["on_air-tv", params?.language], on_air);
   await queryClient.prefetchQuery(
-    ["on_air-tv", params.language],
-    on_air
-  );
-  await queryClient.prefetchQuery(
-    ["airing_today-tv", params.language],
+    ["airing_today-tv", params?.language],
     airing_today
   );
   return {
     props: { dehydratedState: dehydrate(queryClient) }, // will be passed to the page component as props
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   return {
     paths: [
       { params: { language: "en-US", browse: "popular" } },
@@ -47,7 +43,7 @@ export async function getStaticPaths() {
     ],
     fallback: false,
   };
-}
+};
 
 export default function Browse() {
   const URL_IMAGE = process.env.NEXT_PUBLIC_API_URL_IMAGE;
@@ -154,23 +150,17 @@ export default function Browse() {
                 <SecondList
                   title="Top Rated TV"
                   data={TopRated.data}
-                  onOpen={(id) =>
-                    router.push(`/${language}/tv/title/${id}`)
-                  }
+                  onOpen={(id) => router.push(`/${language}/tv/title/${id}`)}
                 />
                 <SecondList
                   title="Now on TV"
                   data={OnAir.data}
-                  onOpen={(id) =>
-                    router.push(`/${language}/tv/title/${id}`)
-                  }
+                  onOpen={(id) => router.push(`/${language}/tv/title/${id}`)}
                 />
                 <SecondList
                   title="Airing Today"
                   data={AiringToday.data}
-                  onOpen={(id) =>
-                    router.push(`/${language}/tv/title/${id}`)
-                  }
+                  onOpen={(id) => router.push(`/${language}/tv/title/${id}`)}
                 />
               </VStack>
             )}
@@ -183,16 +173,12 @@ export default function Browse() {
                 <SecondList
                   title="Popular TV"
                   data={Popular.data}
-                  onOpen={(id) =>
-                    router.push(`/${language}/tv/title/${id}`)
-                  }
+                  onOpen={(id) => router.push(`/${language}/tv/title/${id}`)}
                 />
                 <SecondList
                   title="Now on TV"
                   data={OnAir.data}
-                  onOpen={(id) =>
-                    router.push(`/${language}/tv/title/${id}`)
-                  }
+                  onOpen={(id) => router.push(`/${language}/tv/title/${id}`)}
                 />
                 <SecondList
                   title="Airing Today"

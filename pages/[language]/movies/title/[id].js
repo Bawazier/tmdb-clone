@@ -7,8 +7,7 @@ import {
   providers,
   credits,
 } from "../../../../libs/api/movies";
-import { QueryClient, useQuery } from "react-query";
-import { dehydrate } from "react-query/hydration";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";

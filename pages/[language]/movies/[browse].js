@@ -6,8 +6,7 @@ import {
   upcoming,
   now_playing,
 } from "../../../libs/api/movies";
-import { QueryClient, useQuery } from "react-query";
-import { dehydrate } from "react-query/hydration";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import Header from "../../../components/header";
 import Footer from "../../../components/footer";
 import MainList from "../../../components/main-list";
@@ -16,7 +15,7 @@ import MainItem from "../../../components/main-item";
 import { VStack, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(["popular-movies", params.language], popular);
@@ -49,7 +48,6 @@ export async function getStaticPaths() {
   };
 }
 
-
 export default function Browse() {
   const URL_IMAGE = process.env.NEXT_PUBLIC_API_URL_IMAGE;
   const router = useRouter();
@@ -62,11 +60,7 @@ export default function Browse() {
     retry: 2,
     cacheTime: Infinity,
   };
-  const Popular = useQuery(
-    ["popular-movies", language],
-    popular,
-    option
-  );
+  const Popular = useQuery(["popular-movies", language], popular, option);
   const TopRated = useQuery(["top-rated-movies", language], top_rated, option);
   const Upcoming = useQuery(["upcoming-movies", language], upcoming, option);
   const NowPlaying = useQuery(

@@ -7,8 +7,7 @@ import {
   credits,
   episodes,
 } from "../../../../libs/api/tv-shows";
-import { QueryClient, useQuery } from "react-query";
-import { dehydrate } from "react-query/hydration";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import Header from "../../../../components/header";
 import Footer from "../../../../components/footer";
@@ -133,7 +132,12 @@ export default function Title() {
           />
         )}
         {Details.isSuccess && (
-          <EpisodesItem title={Details.data.name} seasons={Details.data.seasons} onSelectSeasons={(seasons_id) => setSeasonsId(seasons_id)} data={Seasons} />
+          <EpisodesItem
+            title={Details.data.name}
+            seasons={Details.data.seasons}
+            onSelectSeasons={(seasons_id) => setSeasonsId(seasons_id)}
+            data={Seasons}
+          />
         )}
         {Details.isSuccess && Credits.isSuccess && Providers.isSuccess && (
           <MoreDetail
