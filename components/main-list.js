@@ -3,7 +3,7 @@
 import React, {useState} from "react";
 import { Box, HStack, VStack, Center } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 function MainList({title, data, onOpen}) {
   const [next, setNext] = useState(0);
@@ -41,7 +41,10 @@ function MainList({title, data, onOpen}) {
                         alt=""
                         width={208}
                         height={320}
-                      />
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} />
                     </Box>
                   );
                 }

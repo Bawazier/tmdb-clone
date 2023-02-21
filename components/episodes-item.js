@@ -15,13 +15,12 @@ import {
   StackDivider,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
-function EpisodesItem({title, seasons, onSelectSeasons, data}) {
-
+function EpisodesItem({ title, seasons, onSelectSeasons, data }) {
   React.useEffect(() => {
     onSelectSeasons(seasons[seasons.length - 1].season_number);
-  },[]);
+  }, []);
 
   return (
     <Box
@@ -79,8 +78,12 @@ function EpisodesItem({title, seasons, onSelectSeasons, data}) {
                   <Image
                     src={item.still_path}
                     alt=""
-                    width="1080px"
-                    height="550px"
+                    width={1080}
+                    height={550}
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto",
+                    }}
                   />
                 ) : (
                   <Box width="full" height="220px" />

@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import { Box, HStack, VStack, Center } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import Image from "next/legacy/image";
-
+import Image from "next/image";
 
 function SecondList({ title, data, onOpen }) {
   const [next, setNext] = useState(0);
@@ -41,7 +40,11 @@ function SecondList({ title, data, onOpen }) {
                         src={item.backdrop_path}
                         alt=""
                         width={240}
-                        height="auto"
+                        height={40}
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto",
+                        }}
                       />
                     </Box>
                   );

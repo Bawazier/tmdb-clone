@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { SimpleGrid, VStack, HStack, Text, Box } from "@chakra-ui/react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 function MoreDetail({ genres, status, cast, providers }) {
   return (
@@ -41,19 +41,43 @@ function MoreDetail({ genres, status, cast, providers }) {
               {providers?.buy &&
                 providers?.buy.map((item) => (
                   <Box as="button" key={item.id}>
-                    <Image src={item.logo_path} alt="" width={40} height={40} />
+                    <Image
+                      src={item.logo_path}
+                      alt=""
+                      width={40}
+                      height={40}
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }} />
                   </Box>
                 ))}
               {providers?.rent &&
                 providers?.rent.map((item) => (
                   <Box as="button" key={item.id}>
-                    <Image src={item.logo_path} alt="" width={40} height={40} />
+                    <Image
+                      src={item.logo_path}
+                      alt=""
+                      width={40}
+                      height={40}
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }} />
                   </Box>
                 ))}
               {providers?.flatrate &&
                 providers?.flatrate.map((item) => (
                   <Box as="button" key={item.id}>
-                    <Image src={item.logo_path} alt="" width={40} height={40} />
+                    <Image
+                      src={item.logo_path}
+                      alt=""
+                      width={40}
+                      height={40}
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }} />
                   </Box>
                 ))}
             </HStack>

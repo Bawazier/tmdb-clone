@@ -2,7 +2,7 @@
 import React from "react";
 import { Box, HStack, VStack, SimpleGrid, Text } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 function PersonItem() {
   return (
@@ -15,8 +15,12 @@ function PersonItem() {
               <Image
                 src="/z3sLuRKP7hQVrvSTsqdLjGSldwG.jpg"
                 alt=""
-                width="1080px"
-                height="850px"
+                width={1080}
+                height={850}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
               />
               <VStack align="left" spacing="10px">
                 <Text fontSize="md" fontWeight="bold" color="orange">
