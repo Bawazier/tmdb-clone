@@ -15,7 +15,7 @@ import {
   StackDivider,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function EpisodesItem({title, seasons, onSelectSeasons, data}) {
 

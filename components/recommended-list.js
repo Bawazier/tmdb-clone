@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
 import { SimpleGrid, VStack, Text, Box } from "@chakra-ui/react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function RecommendedList({data, onOpen}) {
   return (

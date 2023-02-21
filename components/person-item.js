@@ -2,7 +2,7 @@
 import React from "react";
 import { Box, HStack, VStack, SimpleGrid, Text } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function PersonItem() {
   return (
