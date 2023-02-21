@@ -70,16 +70,16 @@ function Header() {
               Movies
             </MenuButton>
             <MenuList bg="white">
-              <Link href="/en-US/movies/popular">
+              <Link href="/en-US/movies/popular" legacyBehavior>
                 <MenuItem>Popular</MenuItem>
               </Link>
-              <Link href="/en-US/movies/now-playing">
+              <Link href="/en-US/movies/now-playing" legacyBehavior>
                 <MenuItem>Now Playing</MenuItem>
               </Link>
-              <Link href="/en-US/movies/upcoming">
+              <Link href="/en-US/movies/upcoming" legacyBehavior>
                 <MenuItem>Upcoming</MenuItem>
               </Link>
-              <Link href="/en-US/movies/top-rated">
+              <Link href="/en-US/movies/top-rated" legacyBehavior>
                 <MenuItem>Top Rated</MenuItem>
               </Link>
             </MenuList>
@@ -99,16 +99,16 @@ function Header() {
               Tv Shows
             </MenuButton>
             <MenuList bg="white">
-              <Link href="/en-US/tv/popular">
+              <Link href="/en-US/tv/popular" legacyBehavior>
                 <MenuItem>Popular</MenuItem>
               </Link>
-              <Link href="/en-US/tv/airing-today">
+              <Link href="/en-US/tv/airing-today" legacyBehavior>
                 <MenuItem>Airing Today</MenuItem>
               </Link>
-              <Link href="/en-US/tv/on-tv">
+              <Link href="/en-US/tv/on-tv" legacyBehavior>
                 <MenuItem>On TV</MenuItem>
               </Link>
-              <Link href="/en-US/tv/top-rated">
+              <Link href="/en-US/tv/top-rated" legacyBehavior>
                 <MenuItem>Top Rated</MenuItem>
               </Link>
             </MenuList>
@@ -128,7 +128,7 @@ function Header() {
               People
             </MenuButton>
             <MenuList bg="white">
-              <Link href="/en-US/person">
+              <Link href="/en-US/person" legacyBehavior>
                 <MenuItem>Popular</MenuItem>
               </Link>
             </MenuList>
