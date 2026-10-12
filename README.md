@@ -1,34 +1,104 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TMDB Clone
 
-## Getting Started
+A movie and TV show browser built with Next.js, backed by [The Movie Database (TMDB) API](https://developers.themoviedb.org/3). It replicates the core TMDB browsing experience: category listings, title detail pages, trailers, cast/crew, streaming providers, and recommendations.
 
-First, run the development server:
+## What the app does
 
-```bash
-npm run dev
-# or
-yarn dev
+- **Movies**
+  - Browse lists: Popular, Now Playing, Upcoming, Top Rated (`/en-US/movies/[browse]`)
+  - Title detail (`/en-US/movies/title/[id]`): overview, genres, status, release date, cast & crew, watch providers (US), recommendations, and a trailer modal
+- **TV shows**
+  - Browse lists: Popular, Airing Today, On TV, Top Rated (`/en-US/tv/[browse]`)
+  - Title detail (`/en-US/tv/title/[id]`): overview, cast/crew, season episodes, watch providers, recommendations, and a trailer modal
+- **People** — TMDB person API helpers exist (`libs/api/people.ts`); the People page currently returns `notFound` and is a placeholder
+- **Sign-up flow** (`/en-US/join`) — a multi-step form (Formik) for name, job, email, laptop, address and mobile. Data is kept in `localStorage` only; there is no backend.
+
+The root `/` redirects to `/en-US/movies/popular`.
+
+## Tech stack
+
+- **Next.js 13** (Pages Router) + **React 18** + **TypeScript**
+- **Chakra UI** for styling and theming (`styles/theme`)
+- **TanStack Query v4** for data fetching, with SSR/SSG prefetching and `Hydrate`
+- **Axios** for HTTP, **Formik** for forms, **react-player** for trailers
+- SSG for browse pages (`getStaticProps`/`getStaticPaths`), SSR for detail pages (`getServerSideProps`)
+- Production build uses Next.js `output: "standalone"` and the `imgix` image loader
+
+## Project structure
+
+```
+components/     UI components (Header, Footer, lists, detail, modal, signup steps)
+helpers/        http client and TMDB URL builder
+libs/api/       TMDB API wrappers (movies, tv-shows, people)
+libs/interfaces Typed response models for TMDB payloads
+pages/          Next.js routes ([language]/movies, /tv, /person, /join)
+styles/         Global CSS and Chakra theme
+Dockerfile      Multi-stage build: development, builder, runner
+docker-compose.yml  dev server + optional prod profile
+.devcontainer/  VS Code dev container (complete dev environment)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Create `.env.development` in the project root (Next.js loads it in development):
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+NEXT_PUBLIC_API_URL=https://api.themoviedb.org/3
+NEXT_PUBLIC_API_KEY=your_tmdb_api_key
+NEXT_PUBLIC_API_URL_IMAGE=https://image.tmdb.org/t/p
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Get a key from your [TMDB account settings](https://www.themoviedb.org/settings/api).
 
-## Learn More
+## Run with Dev Container (recommended)
 
-To learn more about Next.js, take a look at the following resources:
+Everything you need for development is preinstalled: Node 18, npm, git, git-lfs, GitHub CLI (`gh`), ripgrep, and common CLI tools. Dependencies are installed automatically on create.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Install the **Dev Containers** extension in VS Code (or Cursor).
+2. Open the project folder.
+3. Run **Dev Containers: Reopen in Container** from the Command Palette (`F1`), or click the status-bar prompt.
+4. Wait for the container to build and `npm ci` to finish.
+5. In the container terminal:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+6. Open http://localhost:3000 (port is forwarded automatically; the app redirects to `/en-US/movies/popular`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The workspace is mounted at `/app` and `node_modules`/`.next` live in named volumes so host and container never fight over them. Hot reload works as usual.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Run with Docker Compose
+
+Development with hot reload:
+
+```bash
+docker compose up
+```
+
+Open http://localhost:3000. Source is bind-mounted; `node_modules` and `.next` use anonymous volumes.
+
+Production build (standalone server) on http://localhost:3001:
+
+```bash
+docker compose --profile prod up --build
+```
+
+The prod build reads `NEXT_PUBLIC_*` values from your shell environment (or a root `.env`) as build args.
+
+## Run locally (without containers)
+
+```bash
+npm ci
+npm run dev
+```
+
+## Scripts
+
+| Script          | Description               |
+| --------------- | ------------------------- |
+| `npm run dev`   | Start the dev server      |
+| `npm run build` | Production build          |
+| `npm start`     | Serve the production build |
+
+> Note: `*.spec.ts` test files are present, but no test runner is configured on this branch, so there is no `test` script yet.
