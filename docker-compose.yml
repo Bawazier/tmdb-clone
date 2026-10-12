@@ -1,0 +1,29 @@
+services:
+  tmdb-dev:
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    env_file:
+      - .env.development
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+
+  tmdb-prod:
+    build:
+      context: .
+      target: runner
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_API_KEY: ${NEXT_PUBLIC_API_KEY}
+        NEXT_PUBLIC_API_URL_IMAGE: ${NEXT_PUBLIC_API_URL_IMAGE}
+    ports:
+      - "3001:3000"
+    profiles:
+      - prod
